@@ -1,0 +1,217 @@
+@startuml
+
+' Style settings
+skinparam class {
+  BackgroundColor #FFFFCC
+  ArrowColor #333333
+  BorderColor #999999
+}
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+
+' Main interfaces and classes
+interface TaskList {
+  + add(Task) : void
+  + remove(Task) : boolean
+  + size() : int
+  + getTask(int) : Task
+  + iterator() : Iterator<Task>
+}
+
+class LinkedTaskList {
+  - log : Logger
+  - numberOfTasks : int
+  - first : Node
+  + add(Task) : void
+  + remove(Task) : boolean
+  + size() : int
+  + getTask(int) : Task
+  + iterator() : Iterator<Task>
+  + equals(Object) : boolean
+  + hashCode() : int
+  + toString() : String
+}
+
+class ArrayTaskList {
+  - tasks : Task[]
+  - numberOfTasks : int
+  - currentCapacity : int
+  - log : Logger
+  + iterator() : Iterator<Task>
+  + add(Task) : void
+  + remove(Task) : boolean
+  + size() : int
+  + getTask(int) : Task
+  + equals(Object) : boolean
+  + hashCode() : int
+  + toString() : String
+}
+
+class Task {
+  - time : Date
+  - title : String
+  - log : Logger
+  + call : void
+  + isActive : boolean
+  + endTime : Date
+  + getDateFormat() : SimpleDateFormat
+  + setTime(Date) : void
+  + getTime() : Date
+  + nextTimeAfter(Date) : Date
+  + equals(Object) : boolean
+  + hashCode() : int
+  + toString() : String
+}
+
+class Controller {
+  - log : Logger
+  - taskList : ObservableList<Task>
+  - service : TaskService
+  - dataService : DataService
+  - editNewStage : Stage
+  - tableStage : Stage
+  - mainTable : TableView
+  - tasks : ObservableList<Task>
+  - columnTitle : TableColumn<Task,String>
+  - columnTime : TableColumn<Task,Date>
+  - columnRepeated : TableColumn<Task,String>
+  - lblNewCount : Label
+  - datePickerFrom : DatePicker
+  - editTimeFrom : TextField
+  - datePickerTo : DatePicker
+  - editTimeTo : TextField
+  + initialize() : void
+  + updateCountLabel(ObservableList<Task>) : void
+  + handle(ActionEvent) : void
+  + deleteTask() : void
+  + showSelectedTask() : void
+  + showFilterTask() : void
+  + getDateFromTextField(Date,String) : Date
+  + resetFilterTask() : void
+}
+
+class NewEditController {
+  - clickedButton : Button
+  - log : Logger
+  - currentStage : Stage
+  - currentTask : Task
+  - service : TaskService
+  - dataService : DataService
+  - proceedUpdateMode : boolean
+  - editTitle : TextField
+  - datePickerStart : DatePicker
+  - datePickerEnd : DatePicker
+  - timePickerStart : TextField
+  - timePickerEnd : TextField
+  - checkBoxActive : CheckBox
+  - checkBoxRepeated : CheckBox
+  - DEFAULT_START_TIME : String
+  - DEFAULT_END_TIME : String
+  - DEFAULT_INTERVAL_TIME : String
+  + setClickedButton(Button) : void
+  + setCurrentStage(Stage) : void
+  + initialize() : void
+  + setNewWindow(String) : void
+  + setEditWindow(String) : void
+  + switchRepeatedCheckbox(ActionEvent) : void
+  + hideRepeatTaskModuleAction(boolean) : void
+  + saveChange() : void
+  + closeOnlyWindow() : void
+  + collectTaskData() : Task
+  + makeTask() : Task
+}
+
+class LinkedTaskListIterator {
+  - cursor : int
+  - lastCalled : int
+  + hasNext() : boolean
+  + next() : Task
+  + remove() : void
+}
+
+class ArrayTaskListIterator {
+  - cursor : int
+  - lastCalled : int
+  + hasNext() : boolean
+  + next() : Task
+  + remove() : void
+}
+
+
+
+class Main {
+  + primaryStage : Stage
+  + defaultWidth : int
+  + defaultHeight : int
+  + log : Logger
+  + sceneTaskList : ArrayList
+  + classLoader : ClassLoader
+  + service : TaskService
+  + start(Stage) : void
+  + mainStage() : void
+}
+
+class DateService {
+  + SECONDS_IN_MINUTE : int
+  + MINUTES_IN_HOUR : int
+  + HOURS_IN_A_DAY : int
+  + service : TaskService
+  + getLastTimeFrom(Date,Date,Date,Date) : Date
+  + getValueFromLocalDate(Date,Date) : Date
+  + getDateTimeWithTimeString(Date) : Date
+  + getTimeOfThisDay(Date) : String
+}
+
+class TaskService {
+  + tasks : ArrayList
+  + TaskService(ArrayList) :
+  + getItemsFromHours(Task) : String
+  + parseFromString(String,Date) : int
+  + parseFromString(String) : int
+}
+
+class TaskNotifier {
+  + millisecondInSec : int
+  + secondsInMin : int
+  + log : Logger
+  + taskList : ObservableList<Task>
+  + showNotification(Task) : void
+  + getTimeMinusDelta(Date) : long
+}
+
+class TaskInfoController {
+  + log : Logger
+  + labelTitle : Label
+  + labelStart : Label
+  + labelEnd : Label
+  + labelInterval : Label
+  + labelActive : Label
+  + initialize() : void
+  + showWindow() : void
+}
+
+class TaskOperations {
+  + tasks : ArrayList<Task>
+  + TaskOperations(ObservableList<Task>) :
+  + incoming(Date) : Iterable<Task>
+  + calendar(Date) : SortedMap<Date, Set<Task>>
+}
+
+' Relationships
+TaskList <|.. LinkedTaskList
+TaskList <|.. ArrayTaskList
+ArrayTaskList -- Task
+TaskList -- Task
+
+LinkedTaskList -- LinkedTaskListIterator
+ArrayTaskList -- ArrayTaskListIterator
+
+Controller -- TaskService
+Controller -- Task
+NewEditController -- TaskService
+NewEditController -- Task
+DateService -- TaskService
+
+TaskOperations -- Task
+
+@enduml

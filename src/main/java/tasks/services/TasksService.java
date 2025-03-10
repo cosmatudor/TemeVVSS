@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tasks.model.ArrayTaskList;
 import tasks.model.Task;
-import tasks.model.TasksOperations;
 
 import java.util.Date;
 
@@ -24,18 +23,8 @@ public class TasksService {
         int minutes = seconds / DateService.SECONDS_IN_MINUTE;
         int hours = minutes / DateService.MINUTES_IN_HOUR;
         minutes = minutes % DateService.MINUTES_IN_HOUR;
-        return formTimeUnit(hours) + ":" + formTimeUnit(minutes);//hh:MM
+        return  DateService.formTimeUnit(hours) + ":" + DateService.formTimeUnit(minutes);//hh:MM
     }
-    public String formTimeUnit(int timeUnit){
-        StringBuilder sb = new StringBuilder();
-        if (timeUnit < 10) sb.append("0");
-        if (timeUnit == 0) sb.append("0");
-        else {
-            sb.append(timeUnit);
-        }
-        return sb.toString();
-    }
-
     public int parseFromStringToSeconds(String stringTime){//hh:MM
         String[] units = stringTime.split(":");
         int hours = Integer.parseInt(units[0]);
