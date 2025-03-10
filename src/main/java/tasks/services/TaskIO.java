@@ -81,10 +81,8 @@ public class TaskIO {
 
     public static void write( TaskList tasks, Writer out ) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter( out );
-        Task lastTask = tasks.getTask( tasks.size( ) - 1 );
         for ( Task t : tasks ) {
             bufferedWriter.write( getFormattedTask( t ) );
-            bufferedWriter.write( t.equals( lastTask ) ? ';' : '.' );
             bufferedWriter.newLine( );
         }
         bufferedWriter.close( );
@@ -102,27 +100,10 @@ public class TaskIO {
         reader.close( );
 
     }
-
-    public static void writeText( TaskList tasks, File file ) throws IOException {
-        try ( FileWriter fileWriter = new FileWriter( file ) ) {
-            write( tasks, fileWriter );
-        } catch ( IOException e ) {
-            log.error( ERROR_MESSAGE );
-        }
-
-    }
-
-    public static void readText( TaskList tasks, File file ) throws IOException {
-        try ( FileReader fileReader = new FileReader( file ) ) {
-            read( tasks, fileReader );
-        }
-    }
-
     //// service methods for reading
     private static Task getTaskFromString( String line ) {
         boolean isRepeated = line.contains( "from" );//if contains - means repeated
         boolean isActive = !line.contains( "inactive" );//if isn't inactive - means active
-        //Task(String title, Date time)   Task(String title, Date start, Date end, int interval)
         Task result;
         String title = getTitleFromText( line );
         if ( isRepeated ) {
@@ -244,14 +225,19 @@ public class TaskIO {
         int seconds = ( interval - ( SECONDS_IN_DAY * days + SECONDS_IN_HOUR * hours + SECONDS_IN_MIN * minutes ) );
 
         int[] time = new int[]{days, hours, minutes, seconds};
-        int i = 0;
-        int j = time.length - 1;
-        while ( time[ i ] == 0 || time[ j ] == 0 ) {
-            if ( time[ i ] == 0 ) i++;
-            if ( time[ j ] == 0 ) j--;
+        int startIndex = 0;
+        int endIndex = time.length - 1;
+        while (startIndex < endIndex) {
+            if (time[startIndex] == 0) {
+                startIndex++;
+            } else if (time[endIndex] == 0) {
+                endIndex--;
+            } else {
+                break;
+            }
         }
 
-        for ( int k = i; k <= j; k++ ) {
+        for ( int k = startIndex; k <= endIndex; k++ ) {
             sb.append( time[ k ] );
             sb.append( time[ k ] > 1 ? TIME_ENTITY[ k ] + "s" : TIME_ENTITY[ k ] );
             sb.append( " " );
