@@ -1,4 +1,4 @@
-package tasks.services;
+package tasks.persistence;
 
 import javafx.collections.ObservableList;
 import org.apache.log4j.Logger;
@@ -12,7 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TaskIO {
+public class TaskFileHandler {
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat( "[yyyy-MM-dd HH:mm:ss.SSS]" );
     private static final String[] TIME_ENTITY = {" day", " hour", " minute", " second"};
     private static final int SECONDS_IN_DAY = 86400;
@@ -20,8 +20,8 @@ public class TaskIO {
     private static final int SECONDS_IN_MIN = 60;
     private static final String ERROR_MESSAGE = "IO exception reading or writing file";
 
-    private static final Logger log = Logger.getLogger( TaskIO.class.getName( ) );
-    private TaskIO() {
+    private static final Logger log = Logger.getLogger( TaskFileHandler.class.getName( ) );
+    private TaskFileHandler() {
         // Private constructor to hide the implicit public one
     }
     public static void write( TaskList tasks, OutputStream out ) throws IOException {
@@ -252,7 +252,7 @@ public class TaskIO {
             taskList.add( t );
         }
         try {
-            TaskIO.writeBinary( taskList, Main.getSavedTasksFile( ) );
+            TaskFileHandler.writeBinary( taskList, Main.getSavedTasksFile( ) );
         } catch ( IOException e ) {
             log.error( ERROR_MESSAGE);
         }
