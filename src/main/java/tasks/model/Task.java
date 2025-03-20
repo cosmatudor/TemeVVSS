@@ -43,6 +43,10 @@ public class Task implements Serializable {
     }
 
     public Task( String title, Date start, Date end, int interval ) {
+        if ( title.isEmpty()) {
+            log.error( "title is empty" );
+            throw new IllegalArgumentException( "Title cannot be empty" );
+        }
         if ( start.getTime( ) < 0 || end.getTime( ) < 0 ) {
             log.error( "time below bound" );
             throw new IllegalArgumentException( "Time cannot be negative" );

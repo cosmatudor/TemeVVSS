@@ -36,4 +36,12 @@ public class TasksService {
         TasksOperations tasksOps = new TasksOperations(getObservableList());
         return tasksOps.incoming(start,end);
     }
+
+    public void addTask(Task task){
+        tasks.add(task);
+    }
+
+    public Iterable<Task> getTasks(){
+        return tasks.getAll();
+    }
 }

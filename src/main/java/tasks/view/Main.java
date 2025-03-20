@@ -22,9 +22,9 @@ public class Main extends Application {
     private static final int DEFAULT_HEIGHT = 520;
     private static final Logger log = Logger.getLogger(Main.class.getName());
 
-    private ArrayTaskList savedTasksList = new ArrayTaskList();
+    public ArrayTaskList savedTasksList = new ArrayTaskList();
 
-    private static File savedTasksFile = new File("data/tasks.txt");
+    public static File savedTasksFile = new File("data/tasks.txt");
 
     private TasksService service = new TasksService(savedTasksList);
 
