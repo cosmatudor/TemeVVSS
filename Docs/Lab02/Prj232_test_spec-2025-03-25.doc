@@ -12,7 +12,7 @@
 <p style="text-align: center;"><img alt="TestLink logo" title="configure using $tlCfg->document_generator->company_logo"  width= height= src="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/images/tl-logo-transparent-25.png" /></p></div>
 <div class="doc_title"><p>Test Specification</p></div>
 <div class="doc_title" style="text-align:left;margin: auto;"><p>Test Project: Proiect232<br/>Test Suite: Proiect232 - ctir3314_BBT</p></div>
-<div class="summary"><p id="printedby">Printed by TestLink on 20/03/2025</p></div>
+<div class="summary"><p id="printedby">Printed by TestLink on 25/03/2025</p></div>
 <div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
 <h1 class="general" style="page-break-before: always">Table Of Contents</h1><div class="toc"><p style="padding-left: 20px;"><b><a href="#toc_1">1.ctir3314_BBT</a></b></p>
 <p style="padding-left: 45px;"><a href="#toc_tc23783">Prj232-2: EcpValidTestCase</a></p><p style="padding-left: 45px;"><a href="#toc_tc23786">Prj232-3: EcpInvalidTestCase</a></p><p style="padding-left: 45px;"><a href="#toc_tc23788">Prj232-4: BvaValidTestCase</a></p><p style="padding-left: 45px;"><a href="#toc_tc23790">Prj232-5: BvaInvalidTestCase</a></p></div><h1 class="doclevel" >Scope</h1>
@@ -37,7 +37,7 @@ interval: 5</p>
 <tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
 <tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
 <tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
-<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">ctir3314_F01:  Adaugare_Task [Version : 1]<br /></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
 </table>
 </div>
@@ -59,7 +59,7 @@ interval: 5</p>
 <tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
 <tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
 <tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
-<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">ctir3314_F01:  Adaugare_Task [Version : 1]<br /></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
 </table>
 </div>
@@ -80,7 +80,7 @@ interval: 1</p>
 <tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
 <tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
 <tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
-<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">ctir3314_F01:  Adaugare_Task [Version : 1]<br /></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
 </table>
 </div>
@@ -101,7 +101,7 @@ interval: 0</p>
 <tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
 <tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
 <tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
-<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">ctir3314_F01:  Adaugare_Task [Version : 1]<br /></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
 </table>
 </div>
