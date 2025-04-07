@@ -19,12 +19,18 @@ public class TasksOperations {
         log.info(start);
         log.info(end);
         ArrayList<Task> incomingTasks = new ArrayList<>();
-        for (Task t : tasks) {
-            Date nextTime = t.nextTimeAfter(start);
-            if (nextTime != null && (nextTime.before(end) || nextTime.equals(end))) {
-                incomingTasks.add(t);
-                log.info(t.getTitle());
+        if (end != null && start != null) {
+            for (Task t : tasks) {
+                Date nextTime = t.nextTimeAfter(start);
+                if (nextTime != null && (nextTime.before(end) || nextTime.equals(end))) {
+                    incomingTasks.add(t);
+                    log.info(t.getTitle());
+                }
             }
+        }
+        if (incomingTasks.isEmpty()) {
+            log.info("No tasks found in the specified range.");
+            return Collections.emptyList();
         }
         return incomingTasks;
     }
