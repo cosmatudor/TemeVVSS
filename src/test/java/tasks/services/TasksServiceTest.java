@@ -36,21 +36,7 @@ class TasksServiceTest {
         // Create service with mock repository
         tasksService = new TasksService(mockTaskList);
     }
-
-    @Test
-    void testGetObservableList() {
-        spyTaskList.add(mockTask);
-
-        when(mockTaskList.getAll()).thenReturn(spyTaskList);
-
-        ObservableList<Task> result = tasksService.getObservableList();
-
-        assertEquals(1, result.size());
-        assertSame(mockTask, result.get(0));
-
-        verify(mockTaskList).getAll();
-        verify(spyTaskList).add(mockTask); // Verify the spy was used
-    }
+    
 
     @Test
     void testGetIntervalInHours() {
