@@ -15,7 +15,7 @@ import java.util.stream.StreamSupport;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TasksOperationsTest {
+class TasksOperationsTestLab3 {
 
     @Nested
     @DisplayName("Incoming Tasks Method Tests")

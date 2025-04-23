@@ -1,36 +1,61 @@
 package tasks.model;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.text.ParseException;
-import java.util.Date;
+import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TaskTest {
+import java.util.Date;
 
+class TaskTest {
     private Task task;
+    private Date time;
 
     @BeforeEach
-    void setUp() {
-        try {
-            task=new Task("new task",Task.getDateFormat().parse("2023-02-12 10:10"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void setUp() {
+        time = new Date();
+        task = new Task("Test Task", time);
     }
 
     @Test
-    void testTaskCreation() throws ParseException {
-       assert task.getTitle() == "new task";
-        System.out.println(task.getFormattedDateStart());
-        System.out.println(task.getDateFormat().format(Task.getDateFormat().parse("2023-02-12 10:10")));
-       assert task.getFormattedDateStart().equals(task.getDateFormat().format(Task.getDateFormat().parse("2023-02-12 10:10")));
+    @DisplayName("Task constructor should initialize properties correctly")
+    public void constructorShouldInitializePropertiesCorrectly() {
+        assertEquals("Test Task", task.getTitle());
+        assertEquals(time, task.getTime());
+        assertEquals(time, task.getStartTime());
+        assertEquals(time, task.getEndTime());
+        assertEquals(0, task.getRepeatInterval());
+        assertFalse(task.isActive());
+        assertFalse(task.isRepeated());
     }
 
-    @AfterEach
-    void tearDown() {
+    @Test
+    @DisplayName("Setting task title should update the title property")
+    public void settingTitleShouldUpdateTitleProperty() {
+        task.setTitle("Updated Task");
+        assertEquals("Updated Task", task.getTitle());
+    }
+
+    @Test
+    @DisplayName("Setting task active state should update active property")
+    public void settingActiveShouldUpdateActiveProperty() {
+        task.setActive(true);
+        assertTrue(task.isActive());
+    }
+
+    @Test
+    @DisplayName("Setting time with interval should make task repeated")
+    public void settingTimeWithIntervalShouldMakeTaskRepeated() {
+        // Test setting time with repeated interval
+        Date start = new Date(time.getTime() + 3600000);
+        Date end = new Date(time.getTime() + 7200000);
+        int interval = 600;
+
+        task.setTime(start, end, interval);
+        assertEquals(start, task.getStartTime());
+        assertEquals(end, task.getEndTime());
+        assertEquals(interval, task.getRepeatInterval());
+        assertTrue(task.isRepeated());
     }
 }
