@@ -2,7 +2,6 @@ package tasks.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -21,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("TasksService Test Suite")
 @TestMethodOrder(OrderAnnotation.class)
-class TasksServiceTestLab2 {
+class TasksServiceLab2Test {
 
     private TasksService tasksService;
     private ArrayTaskList taskList;
@@ -39,9 +38,9 @@ class TasksServiceTestLab2 {
         return dateFormat.parse(dateStr);
     }
 
-    @Nested
-    @DisplayName("Equivalence Class Partitioning Tests")
-    class EquivalenceClassPartitioningTests {
+//    @Nested
+//    @DisplayName("Equivalence Class Partitioning Tests")
+//    class EquivalenceClassPartitioningTests {
 
         @Test
         @Order(1)
@@ -130,11 +129,11 @@ class TasksServiceTestLab2 {
             //Assert
             assertTrue(exception.getMessage().contains("interval should me > 1"));
         }
-    }
+//    }
 
-    @Nested
-    @DisplayName("Boundary Value Analysis Tests")
-    class BoundaryValueAnalysisTests {
+//    @Nested
+//    @DisplayName("Boundary Value Analysis Tests")
+//    class BoundaryValueAnalysisTests {
 
         @ParameterizedTest
         @CsvSource({
@@ -211,5 +210,5 @@ class TasksServiceTestLab2 {
             //Assert
             assertTrue(exception.getMessage().contains("Time cannot be negative"));
         }
-    }
+//    }
 }
