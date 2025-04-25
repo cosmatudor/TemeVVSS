@@ -15,7 +15,7 @@ import java.util.stream.StreamSupport;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TasksOperationsTestLab3 {
+class TasksOperationsLab3Test {
     @Test
     @DisplayName("F02_TC01: Empty tasks list should return empty list")
     void testF02_TC01_EmptyTasksList() {
@@ -55,11 +55,15 @@ class TasksOperationsTestLab3 {
     void testF02_TC03_TasksWithinRange() {
         // Arrange
         ObservableList<Task> tasksList = FXCollections.observableArrayList();
-        Task task1 = new Task("Task1", createDate(2000, 4, 25, 12, 30));
-        Task task2 = new Task("Task2", createDate(2000, 4, 29, 12, 30));
+        Task task1 = new Task("Task1", createDate(2000, 4, 15, 12, 30));
+        Task task2 = new Task("Task2", createDate(2000, 4, 20, 12, 30));
+        Task task3 = new Task("Task2", createDate(2000, 4, 25, 12, 30));
+        Task task4 = new Task("Task2", createDate(2000, 4, 29, 12, 30));
         task1.setActive(true);
         task2.setActive(true);
-        tasksList.addAll(task1, task2);
+        task3.setActive(true);
+        task4.setActive(true);
+        tasksList.addAll(task1, task2, task3, task4);
         TasksOperations tasksOperations = new TasksOperations(tasksList);
 
         Date start = createDate(2000, 4, 21, 12, 30);
@@ -72,7 +76,7 @@ class TasksOperationsTestLab3 {
 
         // Assert
         assertEquals(2, incomingTasks.size(), "Should return all tasks within the date range");
-        assertTrue(incomingTasks.containsAll(Arrays.asList(task1, task2)),
+        assertTrue(incomingTasks.containsAll(Arrays.asList(task3, task4)),
                 "Should contain all tasks within the range");
     }
 
