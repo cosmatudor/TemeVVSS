@@ -38,10 +38,6 @@ class TasksServiceLab2Test {
         return dateFormat.parse(dateStr);
     }
 
-//    @Nested
-//    @DisplayName("Equivalence Class Partitioning Tests")
-//    class EquivalenceClassPartitioningTests {
-
         @Test
         @Order(1)
         @DisplayName("TC1: Valid task should be added successfully")
@@ -129,15 +125,9 @@ class TasksServiceLab2Test {
             //Assert
             assertTrue(exception.getMessage().contains("interval should me > 1"));
         }
-//    }
-
-//    @Nested
-//    @DisplayName("Boundary Value Analysis Tests")
-//    class BoundaryValueAnalysisTests {
 
         @ParameterizedTest
         @CsvSource({
-                "TestTask, 2003-10-21, 2022-10-10, 1",  // TC6
                 "T2, 1970-02-02, 1970-02-03, 1",        // TC7
                 "T5, 1970-01-01, 1970-02-03, 2",        // TC10
                 "T7, 1971-01-02, 1970-02-03, 8"         // TC12
@@ -145,6 +135,26 @@ class TasksServiceLab2Test {
         @DisplayName("Valid tasks should be added successfully")
         void testAddValidTasks(String title, String startStr, String endStr, int interval) throws ParseException {
             // Arrange
+            Date start = parseDate(startStr);
+            Date end = parseDate(endStr);
+            Task task = new Task(title, start, end, interval);
+
+            // Act
+            tasksService.addTask(task);
+
+            // Assert
+            assertEquals(1, taskList.size());
+            assertEquals(task, taskList.getTask(0));
+        }
+
+        @Test
+        @DisplayName("BVA Valid") //TC6
+        void testAdd_BvaValidTasks() throws ParseException {
+            // Arrange
+            String title = "TestTask";
+            String startStr = "2003-10-21";
+            String endStr = "2022-10-10";
+            int interval = 1;
             Date start = parseDate(startStr);
             Date end = parseDate(endStr);
             Task task = new Task(title, start, end, interval);
@@ -210,5 +220,4 @@ class TasksServiceLab2Test {
             //Assert
             assertTrue(exception.getMessage().contains("Time cannot be negative"));
         }
-//    }
 }

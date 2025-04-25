@@ -15,7 +15,7 @@ import java.util.stream.StreamSupport;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TasksOperationsLab3Test {
+class TasksOperationsTestLab3 {
     @Test
     @DisplayName("F02_TC01: Empty tasks list should return empty list")
     void testF02_TC01_EmptyTasksList() {
